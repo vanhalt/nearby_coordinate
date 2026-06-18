@@ -3,7 +3,7 @@ use std::f64::consts::TAU; // TAU is 2 * PI
 // inspired by https://github.com/faker-js/faker/blob/b8abfc6415fe5be3a207b1b3dd4266905b924f84/src/modules/location/index.ts#L131
 
 #[derive(Debug)]
-pub struct Coordinate {
+pub struct Coordinates {
     pub latitude: f64,
     pub longitude: f64,
 }
@@ -41,7 +41,7 @@ impl NearbyCoordinate {
         }
     }
 
-    pub fn get_random_coordinate(&self) -> Coordinate {
+    pub fn get_random_coordinate(&self) -> Coordinates {
         let angle: f64 = Self::get_random_angle_radians();
         let radius_metric: f64 = if self.is_metric {
             self.radius
@@ -71,7 +71,7 @@ impl NearbyCoordinate {
         // Box longitude [-180°, 180°]
         new_longitude = (((new_longitude % 360.0) + 540.0) % 360.0) - 180.0;
 
-        Coordinate {
+        Coordinates {
             latitude: new_latitude,
             longitude: new_longitude,
         }
